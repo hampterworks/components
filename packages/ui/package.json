@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./Checkbox": "./src/Checkbox.tsx"
+    "./Checkbox": "./src/Checkbox.tsx",
+    "./Button": "./src/Button.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
