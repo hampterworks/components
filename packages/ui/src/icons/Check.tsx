@@ -4,7 +4,7 @@ import React from "react";
 import styled, {css} from "styled-components";
 
 const IconWrapper = styled.svg<{ $isToggled: boolean }>`
-    height: 18px;
+    height: 24px;
 
     path {
         fill: #1b1b1b;
