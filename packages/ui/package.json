@@ -4,7 +4,9 @@
   "private": true,
   "exports": {
     "./Checkbox": "./src/Checkbox.tsx",
-    "./Button": "./src/Button.tsx"
+    "./Button": "./src/Button.tsx",
+    "./Radio": "./src/Radio.tsx",
+    "./Typography": "./src/Typography.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
