@@ -4,8 +4,6 @@ import React from "react";
 import styled, {css} from "styled-components";
 
 const IconWrapper = styled.svg<{ $isToggled: boolean }>`
-    height: 24px;
-
     path {
         fill: #1b1b1b;
     }
@@ -26,6 +24,7 @@ const Target: React.FC<TargetProps> = ({isToggled, ...props}) => {
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    height='24px'
     $isToggled={isToggled !== undefined ? isToggled : false}
     {...props}
   >
