@@ -6,7 +6,8 @@
     "./Checkbox": "./src/Checkbox.tsx",
     "./Button": "./src/Button.tsx",
     "./Radio": "./src/Radio.tsx",
-    "./Typography": "./src/Typography.tsx"
+    "./Typography": "./src/Typography.tsx",
+    "./Input": "./src/Input.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

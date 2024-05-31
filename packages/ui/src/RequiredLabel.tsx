@@ -8,11 +8,18 @@ const RequiredLabelWrapper = styled.div`
     height: 14px;
     font-size: 14px;
 
+
+`
+
+const LabelContainer = styled.div`
+    height: 14px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
     span {
         color: red;
-        display: block;
-        margin-left: -4px;
-        margin-top: -4px;
     }
 `
 
@@ -20,14 +27,19 @@ type RequiredLabelProps = {
   requiredTitle?: React.ReactNode
 }
 
-const RequiredLabel: React.FC<RequiredLabelProps> = ({requiredTitle, ...props}) => {
-  return <RequiredLabelWrapper>
+const RequiredLabel: React.FC<RequiredLabelProps> = ({requiredTitle}) => {
+  return <>
     {
-      requiredTitle === undefined
-        ? <><span>*</span> This field is required</>
-        : <>{requiredTitle}</>
+      <LabelContainer>
+        <span>*</span>
+        {
+          requiredTitle !== undefined
+            ? requiredTitle
+            : 'This field is required'
+        }
+      </LabelContainer>
     }
-  </RequiredLabelWrapper>
+  </>
 }
 
 export default RequiredLabel
