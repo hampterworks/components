@@ -12,6 +12,7 @@ const RadioWrapper = styled.fieldset`
     
     legend {
         display: flex;
+        gap: 4px;
         margin-bottom: 8px;
     }
 `
@@ -37,8 +38,8 @@ type SelectItem = {
 }
 
 type RadioProps = {
-  title?: string
-  name?: string
+  label?: string
+  name: string
   required?: boolean
   selectedItem?: string
   onSelected?: (value: string) => void
@@ -50,7 +51,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (pro
 
   const {
     name,
-    title,
+    label,
     options,
     required,
     selectedItem,
@@ -65,11 +66,12 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (pro
 
   return <RadioWrapper>
     <legend>
-      {title}
+      {label}
       {
-        required && title !== undefined && <RequiredLabel requiredTitle={<span>*</span>}/>
+        required && label !== undefined && <RequiredLabel requiredTitle=''/>
       }
     </legend>
+
     {
       options.map((option) => <RadioItem key={option.value} >
         <Target

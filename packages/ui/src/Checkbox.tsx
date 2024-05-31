@@ -9,7 +9,8 @@ const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     display: flex;
     align-items: center;
     gap: 4px;
-
+    position: relative;
+    
     label, svg {
         cursor: pointer;
         font-size: 18px;
@@ -21,11 +22,16 @@ const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
         }
     }
     
+    input {
+        position: absolute;
+        bottom: 0;
+    }
+    
     ${props => props.$sx}
 `
 
 type CheckboxProps = {
-  title: string
+  label: string
   name: string
   isChecked?: boolean
   onChecked?: (checked: boolean) => void
@@ -37,7 +43,7 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
   const [selected, setSelected] = useState<boolean>(false)
 
   const {
-    title,
+    label,
     name,
     isChecked,
     onChecked,
@@ -60,7 +66,7 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
           onChecked(!selected)
       }}/>
 
-    <label htmlFor={name}>{title}</label>
+    <label htmlFor={name}>{label}</label>
 
     <input
       ref={ref}
@@ -77,7 +83,7 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
       {...restProps}
     />
     {
-      required && <RequiredLabel requiredTitle={<span>*</span>}/>
+      required && <RequiredLabel requiredTitle=''/>
     }
   </CheckboxWrapper>
 }
