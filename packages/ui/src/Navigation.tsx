@@ -5,14 +5,30 @@ import Link from 'next/link'
 import styled, {css} from "styled-components";
 import ChevronDown from "./icons/ChevronDown";
 
-const NavigationWrapper = styled.ul`
+const NavigationWrapper = styled.nav`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-right: 1px solid #eaeaea;
 
+    & > div {
+        padding: 16px 8px;
+    }
+    
+    & > div:last-of-type {
+        margin-top: auto;
+    }
+    
+`
+
+const NavigationList = styled.ul`
+    font-size: 16px;
 `
 const itemStyles = css`
     display: flex;
-    line-height: 24px;
+    line-height: 16px;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 16px 8px;
     border-bottom: 1px solid #eaeaea;
 `
 
@@ -26,10 +42,6 @@ const NavigationItem = styled.li`
 
 const SubNavigationItem = styled.li`
     background: #f4f4f4;
-
-    a {
-        padding-left: 32px;
-    }
 `
 
 const SubLinkHeader = styled.div`
@@ -60,13 +72,21 @@ type NavigationList = {
 })
 
 type NavigationProps = {
+  header?: React.ReactNode
+  footer?: React.ReactNode
   links: NavigationList[]
 } & React.ComponentPropsWithoutRef<'nav'>
 
-const Navigation: React.FC<NavigationProps> = ({links, ...props}) => {
+const Navigation: React.FC<NavigationProps> = ({header, footer, links, ...props}) => {
   const [menuToggle, setMenuToggle] = useState<string[]>([])
-  return <nav {...props}>
-    <NavigationWrapper>
+  return <NavigationWrapper {...props}>
+    {
+      header !== undefined &&
+      <div>
+        {header}
+      </div>
+    }
+    <NavigationList>
       {
         links.map((link, index) => <NavigationItem key={link.name + index}>
           {
@@ -90,7 +110,7 @@ const Navigation: React.FC<NavigationProps> = ({links, ...props}) => {
               }}>
                 {link.icon}
                 {link.name}
-                <ChevronDown/>
+                <ChevronDown invert={menuToggle.includes(link.name + index)}/>
               </SubLinkHeader>
               {
                 menuToggle.includes(link.name + index) && <ul>
@@ -109,8 +129,14 @@ const Navigation: React.FC<NavigationProps> = ({links, ...props}) => {
           }
         </NavigationItem>)
       }
-    </NavigationWrapper>
-  </nav>
+    </NavigationList>
+    {
+      footer !== undefined &&
+      <div>
+        {footer}
+      </div>
+    }
+  </NavigationWrapper>
 }
 
 export default Navigation
