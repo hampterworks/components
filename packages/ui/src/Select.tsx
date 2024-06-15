@@ -68,7 +68,7 @@ const ListItem = styled.li<{ $isSelected: boolean }>`
     border-bottom: 1px solid black;
     cursor: pointer;
     background: white;
-    
+
     div {
         display: flex;
         gap: 8px;
@@ -155,10 +155,13 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
   // State for holding the autocomplete search term
   const [searchTerm, setSearchTerm] = useState<string>('')
 
+  // State for filtered search results
+  const [filteredOptions, setFilteredOptions] = useState<SelectItem[]>(options)
+
   // Updates the value selected by the custom element in the native element
   useEffect(() => {
+    const selectElement = document.getElementsByTagName('select')
     if (selected.length > 0) {
-      const selectElement = document.getElementsByTagName('select')
       if (selectElement[0] && selected[0]) {
         for (let element of selectElement[0].options) {
           const selectedIndex = selected.findIndex(item => item.value === element.value)
@@ -169,7 +172,16 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
       }
       setIsInvalid(false)
     }
-  }, [selected]);
+    // reset the selection if nothing is selected
+    if (selected.length === 0 && selectElement[0]) {
+      selectElement[0].selectedIndex = -1
+    }
+
+  }, [selected])
+
+  useEffect(() => {
+    setFilteredOptions(options.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase() ?? '')))
+  }, [searchTerm])
 
   // Hook for detecting a click outside the element and closing the dropdown
   useClickOutside(clickRef, () => {
@@ -251,7 +263,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     </select>
     <label htmlFor={id}>{label}</label>
     {
-      multiple !== undefined && multiple && selected.length > 0 &&
+      ((multiple !== undefined && multiple) || searchable) && selected.length > 0 &&
       <MultiSelectWrapper>
         {
           selected.map(option =>
@@ -281,12 +293,19 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
             invert={menuToggle}/>
         }
         isInvalid={isInvalid}
-        onChange={event => searchable === true && setSearchTerm(event.target.value)}
+        onChange={event => {
+          if (searchable === true) {
+            setSearchTerm(event.target.value)
+            if (searchTerm.length > 0 && !menuToggle) {
+              setMenuToggle(true)
+            }
+          }
+        }}
         onClick={() => setMenuToggle(!menuToggle)}
         sx={css`cursor: pointer`}
       />
       {
-        menuToggle &&
+        menuToggle && filteredOptions.length > 0 &&
         <DropDown
           role="listbox"
           tabIndex={0}
@@ -294,7 +313,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
           aria-labelledby="dropdown-label"
         >
           {
-            options.filter(item => item.title.toLowerCase().includes(searchTerm?.toLowerCase() ?? '')).map((option, index) =>
+            filteredOptions.map((option, index) =>
               <ListItem
                 $isSelected={selected.findIndex(item => item.value === option.value) >= 0}
                 id={`option-${option.value + index}`}
