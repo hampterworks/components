@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import Link from 'next/link'
 import styled, {css} from "styled-components";
 import ChevronDown from "./icons/ChevronDown";
+import { usePathname } from 'next/navigation'
 
 const NavigationWrapper = styled.nav`
     display: flex;
@@ -30,6 +31,13 @@ const itemStyles = css`
     gap: 8px;
     padding: 16px 8px;
     border-bottom: 1px solid #eaeaea;
+    
+    & > svg:last-child {
+        margin-left: auto;
+    }
+    &:hover {
+        font-size: 17px;
+    }
 `
 
 const NavigationItem = styled.li`
@@ -37,6 +45,7 @@ const NavigationItem = styled.li`
 
     a {
         ${itemStyles}
+
     }
 `
 
@@ -71,6 +80,20 @@ export type NavigationList = {
   subLinks: NavigationItem[];
 })
 
+type LinkElementProps = {
+  isExternal: boolean
+  url: string
+  name: string
+  pathname?: string
+  icon?: React.ReactNode
+}
+
+const getLinkElement = ({isExternal, url, name, pathname, icon}: LinkElementProps): React.ReactNode => {
+  return isExternal
+    ? <a href={url} rel='noreferrer' target='_blank'>{icon} {name} {url}</a>
+    : <Link href={url}>{icon} {name} {pathname === url && <ChevronDown style={{transform: 'rotate(-90deg)'}}/>}</Link>
+}
+
 type NavigationProps = {
   header?: React.ReactNode
   footer?: React.ReactNode
@@ -79,6 +102,8 @@ type NavigationProps = {
 
 const Navigation: React.FC<NavigationProps> = ({header, footer, links, ...props}) => {
   const [menuToggle, setMenuToggle] = useState<string[]>([])
+  const pathname = usePathname()
+
   return <NavigationWrapper {...props}>
     {
       header !== undefined &&
@@ -90,9 +115,8 @@ const Navigation: React.FC<NavigationProps> = ({header, footer, links, ...props}
       {
         links.map((link, index) => <NavigationItem key={link.name + index}>
           {
-            link.type === 'link' && (link.url.startsWith('http')
-              ? <a href={link.url} rel='noreferrer' target='_blank'>{link.icon} {link.name}</a>
-              : <Link href={link.url}>{link.icon} {link.name}</Link>)
+            link.type === 'link' &&
+            getLinkElement({isExternal: link.url.startsWith('http'), name: link.name, icon: link.icon, url: link.url, pathname: pathname})
           }
           {
             link.type === 'subLink' && <>
@@ -117,9 +141,7 @@ const Navigation: React.FC<NavigationProps> = ({header, footer, links, ...props}
                   {
                     link.subLinks.map((subLink, index) => <SubNavigationItem key={subLink.name + index}>
                       {
-                        subLink.url.startsWith('http')
-                          ? <a href={subLink.url} rel='noreferrer' target='_blank'>{subLink.icon} {subLink.name}</a>
-                          : <Link href={subLink.url}>{subLink.icon} {subLink.name}</Link>
+                        getLinkElement({isExternal: subLink.url.startsWith('http'), name: subLink.name, icon: subLink.icon, url: subLink.url, pathname: pathname})
                       }
                     </SubNavigationItem>)
                   }
