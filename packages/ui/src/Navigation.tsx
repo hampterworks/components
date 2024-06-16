@@ -60,7 +60,7 @@ type NavigationItem = {
   icon?: React.ReactNode
 }
 
-type NavigationList = {
+export type NavigationList = {
   name: string;
   icon?: React.ReactNode
 } & ({

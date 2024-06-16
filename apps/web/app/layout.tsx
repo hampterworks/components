@@ -2,7 +2,8 @@ import "./globals.css";
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import React from "react";
-import Navigation from "@repo/ui/Navigation";
+import Navigation, {NavigationList} from "@repo/ui/Navigation";
+import {navigationLinks} from "../data/navigation";
 
 const inter = Inter({subsets: ["latin"]})
 
@@ -15,23 +16,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({children}) => {
   return <html lang="en">
   <body className={inter.className}>
   <Navigation
-    links={[
-      {type: 'link', name: 'Home', url: '/'},
-      {
-        type: 'subLink',
-        name: 'Components',
-        subLinks:[
-          {url: '/', name: 'Input'}
-        ]
-      },
-      {
-        type: 'subLink',
-        name: 'Hooks',
-        subLinks:[
-          {url: '/', name: 'Click outside'}
-        ]
-      }
-    ]}
+    links={navigationLinks as NavigationList[]}
   />
   {children}
   </body>
