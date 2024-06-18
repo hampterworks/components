@@ -91,7 +91,7 @@ type LinkElementProps = {
 const getLinkElement = ({isExternal, url, name, pathname, icon}: LinkElementProps): React.ReactNode => {
   return isExternal
     ? <a href={url} rel='noreferrer' target='_blank'>{icon} {name} {url}</a>
-    : <Link href={url}>{icon} {name} {pathname === url && <ChevronDown style={{transform: 'rotate(-90deg)'}}/>}</Link>
+    : <Link href={url}>{icon} {name} {pathname === url && <ChevronDown style={{transform: 'rotate(-90deg)', height: '14px'}}/>}</Link>
 }
 
 type NavigationProps = {
