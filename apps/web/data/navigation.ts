@@ -9,6 +9,7 @@ export const navigationLinks = [
       {url: '/components/typography', name: 'Typography'},
       {url: '/components/button', name: 'Button'},
       {url: '/components/select', name: 'Select'},
+      {url: '/components/range', name: 'Range'}
     ]
   },
   {

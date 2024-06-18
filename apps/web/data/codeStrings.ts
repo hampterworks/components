@@ -78,3 +78,14 @@ type SelectProps = {
   searchable?: boolean
 } & React.ComponentPropsWithRef<'select'>
 `
+export const rangeCodeString = `
+type RangeSliderProps = {
+  name?: string
+  label?: string
+  value?: number
+  min?: number
+  max?: number
+  step?: number
+  marks?: number
+} & React.ComponentPropsWithoutRef<'input'>
+`

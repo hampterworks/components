@@ -10,6 +10,7 @@
     "./Input": "./src/Input.tsx",
     "./Select": "./src/Select.tsx",
     "./Navigation": "./src/Navigation.tsx",
+    "./RangeSlider": "./src/RangeSlider.tsx",
     "./Code": "./src/Code.tsx"
   },
   "scripts": {
