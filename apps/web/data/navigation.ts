@@ -9,14 +9,15 @@ export const navigationLinks = [
       {url: '/components/typography', name: 'Typography'},
       {url: '/components/button', name: 'Button'},
       {url: '/components/select', name: 'Select'},
-      {url: '/components/range', name: 'Range'}
+      {url: '/components/range', name: 'Range'},
+      {url: '/components/breadcrumbs', name: 'Breadcrumbs'}
     ]
   },
   {
     type: 'subLink',
     name: 'Hooks',
     subLinks:[
-      {url: '/', name: 'Click outside'}
+      {url: '/hooks/click-outside', name: 'Click outside'}
     ]
   }
 ]
