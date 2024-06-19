@@ -22,10 +22,11 @@ const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     datalist {
         display: flex;
         justify-content: space-between;
-        padding: 0 2px;
         height: 10px;
         overflow: hidden;
-
+        option {
+            padding: 0 2px;
+        }
         option::before {
             content: '|';
             color: #aeaeae;
@@ -36,13 +37,32 @@ const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
 `
 
 const RangeElement = styled.input`
-    &::-webkit-slider-runnable-track, &::-moz-range-track {
+    -webkit-appearance: none;
+    &::-webkit-slider-runnable-track {
+        width: 100%;
         background: #0c69a8;
         height: 15px;
         border-radius: 2px;
     }
 
-    &::-webkit-slider-thumb, &::-moz-range-thumb {
+    &::-moz-range-track {
+        background: #0c69a8;
+        height: 15px;
+        border-radius: 2px;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #aeaeae;
+        height: 20px;
+        width: 10px;
+        border-radius: 2px;
+        border: 0;
+        transform: translateY(-10%);
+    }
+
+    &::-moz-range-thumb {
         background-color: #aeaeae;
         height: 20px;
         width: 10px;
@@ -50,7 +70,7 @@ const RangeElement = styled.input`
         border: 0;
     }
 
-    &::-moz-range-progress, &::-webkit-slider-runnable-track {
+    &::-moz-range-progress {
         background: #053a5f;
         height: 10px;
     }
@@ -58,7 +78,7 @@ const RangeElement = styled.input`
 
 const GenerateTickMarks = (min: number, max: number, marks: number) =>
   Array.from({length: (max - min) / marks + 1}, (_, index) => min + (index * marks))
-    .map(index => <option value={index} label={index.toString()} key={index.toString()}></option>)
+    .map(index => <option value={index} key={index.toString()}></option>)
 
 /**
  * Represents the props for the RangeSlider component.
