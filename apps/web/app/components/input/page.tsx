@@ -38,8 +38,7 @@ const Page: React.FC = () => {
           field will typically be styled to indicate an error state to the user.
         </p>
         <p>
-          sx: An optional property for providing CSS styling to the component. It should be a return type of the css
-          function.
+          onInput: An optional function that serves as a callback triggered when the user changes the input value.
         </p>
       </div>
     </section>

@@ -89,17 +89,17 @@ const IconRight = styled(IconCommon)`
     }
 `
 /**
- * Represents the properties for the Input component.
+ * Represents the props for the Input component.
  *
  * @typedef {Object} InputProps
- *
- * @property {string} [label] - The label for the input.
- * @property {React.ReactNode} [iconLeft] - The icon to be displayed on the left side of the input.
- * @property {React.ReactNode} [iconRight] - The icon to be displayed on the right side of the input.
- * @property {React.ReactNode} [requiredTitle] - The required title to be displayed for the input.
- * @property {boolean} [isInvalid] - Specifies if the input is in an invalid state.
- * @property {ReturnType<typeof css>} [sx] - The custom styling for the input.
- * @property {React.ComponentPropsWithRef<'input'>} - The additional properties for the input element.
+ * @property {string=} label - The label for the input.
+ * @property {React.ReactNode=} iconLeft - The React node for the icon on the left side of the input.
+ * @property {React.ReactNode=} iconRight - The React node for the icon on the right side of the input.
+ * @property {React.ReactNode=} requiredTitle - The React node for the required title of the input.
+ * @property {boolean=} isInvalid - Specifies whether the input is invalid or not.
+ * @property {(value: string) => void=} onInput - The function to be called when the input value changes.
+ * @property {ReturnType<typeof css>=} sx - The style object for the input.
+ * @property {React.ComponentPropsWithRef<'input'>} - The additional props for the underlying input element.
  */
 type InputProps = {
   label?: string
@@ -107,28 +107,30 @@ type InputProps = {
   iconRight?: React.ReactNode,
   requiredTitle?: React.ReactNode
   isInvalid?: boolean
+  onInput?: (value: string) => void
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 
 /**
- * React forward ref render function for an input component.
+ * React functional component that renders an input element with optional label, icons, and validation.
  *
- * @param {object} props - The input component props.
- * @param {string} props.id - The input element ID.
- * @param {string} [props.type='text'] - The input element type.
- * @param {string} props.value - The input element value.
- * @param {function} props.onChange - The callback function for when the input value changes.
- * @param {function} props.onFocus - The callback function for when the input element gets focus.
- * @param {function} props.onBlur - The callback function for when the input element loses focus.
- * @param {string} props.label - The label for the input element.
- * @param {ReactNode} props.iconLeft - The icon to display on the left side of the input element.
- * @param {ReactNode} props.iconRight - The icon to display on the right side of the input element.
- * @param {object} props.sx - The custom styles for the input wrapper.
- * @param {boolean} props.required - Indicates if the input is required.
- * @param {string} props.requiredTitle - The title for the required label.
- * @param {boolean} props.isInvalid - Indicates if the input is invalid.
+ * @param {object} props - The component props.
+ * @param {string} props.id - The ID of the input element.
+ * @param {string} [props.type='text'] - The type of the input element.
+ * @param {string} props.value - The value of the input element.
+ * @param {function} props.onChange - The callback function to handle input value changes.
+ * @param {function} [props.onFocus] - The callback function to handle input focus event.
+ * @param {function} [props.onBlur] - The callback function to handle input blur event.
+ * @param {string} [props.label] - The label text for the input element.
+ * @param {ReactNode} [props.iconLeft] - The icon component to be displayed on the left side of the input element.
+ * @param {ReactNode} [props.iconRight] - The icon component to be displayed on the right side of the input element.
+ * @param {object} [props.sx] - Custom styles for the root element.
+ * @param {boolean} [props.required] - Whether the input element is required.
+ * @param {string} [props.requiredTitle] - The title attribute for the required label.
+ * @param {boolean} [props.isInvalid] - Whether the input is invalid or not.
+ * @param {function} [props.onInput] - The callback function to handle input value changes with more control.
  *
- * @returns {JSX.Element} - The rendered input component.
+ * @returns {JSX.Element} The rendered input component.
  */
 const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (props, ref) => {
   const {
@@ -145,6 +147,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (pro
     required,
     requiredTitle,
     isInvalid,
+    onInput,
     ...restProps
   } = props
 
@@ -153,6 +156,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (pro
   useEffect(() => {
     if (value !== undefined)
       setInputValue(value)
+
   }, [value])
 
   return <ElementWrapper $sx={sx}>
@@ -175,7 +179,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (pro
         id={id}
         type={type || 'text'}
         value={inputValue ?? ''}
-        onChange={onChange ?? ((event) => setInputValue(event.target.value))}
+        onChange={onChange ?? ((event) => {
+          setInputValue(event.target.value)
+          if (onInput !== undefined)
+            onInput(event.target.value)
+        })}
         onFocus={onFocus}
         onBlur={onBlur}
         required={required}

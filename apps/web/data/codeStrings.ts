@@ -7,6 +7,7 @@ type InputProps = {
   iconRight?: React.ReactNode,
   requiredTitle?: React.ReactNode
   isInvalid?: boolean
+  onInput?: (value: string) => void
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 `
