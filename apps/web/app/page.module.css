@@ -5,6 +5,17 @@
   gap: 32px;
 }
 
+.textBody {
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.header {
+  margin-bottom: 8px;
+}
+
 .sideBySide {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

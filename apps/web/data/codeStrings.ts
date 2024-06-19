@@ -69,6 +69,11 @@ type ButtonProps = ({
 `
 
 export const selectCodeString = `
+type SelectItem = {
+  value: string
+  title: string
+}
+
 type SelectProps = {
   options: SelectItem[]
   label?: string

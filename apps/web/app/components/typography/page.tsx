@@ -7,12 +7,29 @@ import {typographyCodeString} from "../../../data/codeStrings";
 
 const Page: React.FC = () => {
   return <main className={styles.main}>
-    <div>
-      <Typography component='h1' variant='h1'>Typography</Typography>
-      <Typography component='h2' variant='h5'>
-        Bacon ipsum dolor amet pork loin tail shank chislic cupim drumstick shoulder frankfurter sausage. Flank cupim jerky leberkas, jowl pig andouille. Pork chop pastrami pancetta corned beef fatback alcatra flank tail drumstick prosciutto kielbasa leberkas cow.
+    <section>
+      <Typography component='h1' variant='h1' className={styles.header}>Typography</Typography>
+      <Typography component='h2' variant='h4'>
+        Typography is a component that represents a block of text with specific styles and semantics. It accepts several
+        properties:
       </Typography>
-    </div>
+      <div className={styles.textBody}>
+        <p>
+          variant: An optional Variants type that represents the variant of the Typography component. The variant can
+          be one of the following: ‘h1’, ‘h2’, ‘h3’, ‘h4’, ‘h5’, ‘h6’. This determines the style of
+          the text.
+        </p>
+        <p>
+          component: An optional Headings type that represents the HTML heading element to be used for
+          the Typography component. The component can be one of the following: ‘h1’, ‘h2’, ‘h3’, ‘h4’, ‘h5’, ‘h6’. This
+          determines the semantic meaning of the text in the context of the webpage.
+        </p>
+        <p>
+          A React.ReactNode that represents the content of the Typography component. This is the text that will be
+          displayed.
+        </p>
+      </div>
+    </section>
     <div className={styles.sideBySide}>
       <section>
         <Typography variant='h1'>The quick brown fox jumps over the lazy dog</Typography>

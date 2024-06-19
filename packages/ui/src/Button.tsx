@@ -39,7 +39,18 @@ const StyledButton = styled.button<{
 }}
     ${props => props.$sx}
 `
-
+/**
+ * Represents the props for the Button component.
+ *
+ * @typedef {Object} ButtonProps
+ * @property {React.ReactNode} [label] - The label to be displayed on the button.
+ * @property {('small' | 'medium' | 'large')} [size] - The size of the button.
+ * @property {React.ReactElement} [icon] - The icon to be displayed on the button.
+ * @property {('left' | 'right')} [iconDirection] - The direction of the icon on the button.
+ * @property {boolean} [iconButton] - A boolean value indicating whether the button should be rendered as an icon button.
+ * @property {ReturnType<typeof css>} [sx] - The CSS styling of the button.
+ * @extends {React.ComponentPropsWithoutRef<'button'>}
+ */
 type ButtonProps = ({
   label: React.ReactNode
   size?: 'small' | 'medium' | 'large'

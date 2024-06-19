@@ -31,6 +31,15 @@ const Heading = styled.span<{$variant?: Variants, $sx?: ReturnType<typeof css>}>
     ${props => props.$sx}
 `
 
+/**
+ * Represents the props for the Typography component.
+ * @typedef {object} TypographyProps
+ * @property {Variants} [variant] - The variant of the Typography component.
+ * @property {Headings} [component] - The HTML heading element to be used for the Typography component.
+ * @property {React.ReactNode} children - The content of the Typography component.
+ * @property {ReturnType<typeof css>} [sx] - Additional styles applied to the Typography component using the css() function.
+ * @property {React.ComponentPropsWithoutRef<'h1'>} - Additional props passed to the underlying HTML h1 element.
+ */
 type TypographyProps = {
   variant?: Variants
   component?: Headings

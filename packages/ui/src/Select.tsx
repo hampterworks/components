@@ -93,7 +93,12 @@ const ListItem = styled.li<{ $isSelected: boolean }>`
         background: #d9d9d9;
     `}
 `
-
+/**
+ * Represents an item that can be selected in a dropdown menu.
+ * @typedef {Object} SelectItem
+ * @property {string} value - The value associated with the item.
+ * @property {string} title - The title or display text of the item.
+ */
 type SelectItem = {
   value: string
   title: string

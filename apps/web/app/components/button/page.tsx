@@ -23,14 +23,38 @@ const Flower: React.FC = () => {
 
 const Page: React.FC = () => {
   return <main className={styles.main}>
-    <div>
-      <Typography component='h1' variant='h1'>Button</Typography>
-      <Typography component='h2' variant='h5'>
-        Bacon ipsum dolor amet pork loin tail shank chislic cupim drumstick shoulder frankfurter sausage. Flank cupim
-        jerky leberkas, jowl pig andouille. Pork chop pastrami pancetta corned beef fatback alcatra flank tail drumstick
-        prosciutto kielbasa leberkas cow.
+    <section>
+      <Typography component='h1' variant='h1' className={styles.header}>Button</Typography>
+      <Typography component='h2' variant='h4'>
+        The Button is a component that represents a clickable button, which can be used in forms,
+        or anywhere in the application that needs simple, standard button functionality. It accepts several properties:
       </Typography>
-    </div>
+      <div className={styles.textBody}>
+        <p>
+          label: An optional property that represents the label to be displayed on the button. It can be any renderable
+          React node.
+        </p>
+        <p>
+          size: An optional property that determines the size of the button. It can be ‘small’, ‘medium’, or ‘large’.
+        </p>
+        <p>
+          icon: An optional property that represents the icon to be displayed on the button. It should be a React
+          element.
+        </p>
+        <p>
+          iconDirection: An optional property that determines the direction of the icon on the button. It can be ‘left’
+          or ‘right’.
+        </p>
+        <p>
+          iconButton: An optional boolean property that indicates whether the button should be rendered as an icon
+          button. If true, the button will be styled and behave as an icon button.
+        </p>
+        <p>
+          sx: An optional property for providing CSS styling to the component. It should be a return type of the css
+          function.
+        </p>
+      </div>
+    </section>
     <div className={styles.sideBySide}>
       <section>
         <Button size='medium' label='Normal Button'/>

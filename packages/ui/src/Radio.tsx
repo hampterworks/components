@@ -34,11 +34,34 @@ const RadioItem = styled.div`
         }
     }
 `
+/**
+ * Represents an item in a select dropdown menu.
+ *
+ * @typedef {Object} SelectItem
+ * @property {string} value - The value of the item.
+ * @property {string} title - The title or display text of the item.
+ */
 type SelectItem = {
   value: string
   title: string
 }
 
+/**
+ * Represents the properties for the Radio component.
+ *
+ * @typedef {Object} RadioProps
+ *
+ * @property {string} name - The name of the radio group.
+ * @property {string} [label] - The label for the radio group.
+ * @property {boolean} [required] - Whether the radio group is required.
+ * @property {string} [selectedItem] - The selected item in the radio group.
+ * @property {Function} [onSelected] - The callback function triggered when an item is selected.
+ * @param {string} value - The value of the selected item.
+ * @property {SelectItem[]} options - The options available for the radio group.
+ * @property {Function} [sx] - The styling function to apply custom CSS styles to the radio group.
+ * @param {Object} CSSProperties - The CSS properties object.
+ * @returns {React.ComponentPropsWithRef<'input'>} - The component props for the input element.
+ */
 type RadioProps = {
   label?: string
   name: string
@@ -49,6 +72,13 @@ type RadioProps = {
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 
+/**
+ * A functional component that represents a radio input with options.
+ *
+ * @param {RadioProps} props - The props object containing the input configuration.
+ * @param {React.Ref<HTMLInputElement>} ref - The ref object for accessing the underlying radio input.
+ * @returns {JSX.Element} - The rendered radio input component.
+ */
 const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (props, ref) => {
   const [selected, setSelected] = useState<string | undefined>()
 

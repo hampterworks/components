@@ -8,12 +8,40 @@ import {inputCodeString} from "../../../data/codeStrings";
 
 const Page: React.FC = () => {
   return <main className={styles.main}>
-    <div>
-      <Typography component='h1' variant='h1'>Inputs</Typography>
+    <section>
+      <Typography component='h1' variant='h1' className={styles.header}>Inputs</Typography>
       <Typography component='h2' variant='h5'>
-        Bacon ipsum dolor amet pork loin tail shank chislic cupim drumstick shoulder frankfurter sausage. Flank cupim jerky leberkas, jowl pig andouille. Pork chop pastrami pancetta corned beef fatback alcatra flank tail drumstick prosciutto kielbasa leberkas cow.
+        The Input is a component that represents an input field,
+        commonly used in forms to collect user data. It accepts several properties:
       </Typography>
-    </div>
+      <div className={styles.textBody}>
+        <p>
+          label: An optional string that represents the label for the input. This is typically displayed above the
+          input to inform users what information should be entered in the input field.
+        </p>
+        <p>
+          iconLeft: An optional property that represents an icon to be displayed on the left side of the input. It can be any renderable React
+          node.
+        </p>
+        <p>
+          iconRight: An optional property that represents an icon to be displayed on the right side of the
+          input. It can be any renderable React node.
+        </p>
+        <p>
+          requiredTitle: An optional property that represents the
+          required title to be displayed for the input. It can be any renderable React node. This is typically used to
+          indicate that the input field is required.
+        </p>
+        <p>
+          isInvalid: An optional boolean property that specifies if the input is in an invalid state. If true, the input
+          field will typically be styled to indicate an error state to the user.
+        </p>
+        <p>
+          sx: An optional property for providing CSS styling to the component. It should be a return type of the css
+          function.
+        </p>
+      </div>
+    </section>
     <div className={styles.sideBySide}>
       <section>
         <Input name='input' label='Text Input'/>

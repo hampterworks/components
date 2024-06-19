@@ -29,7 +29,16 @@ const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     
     ${props => props.$sx}
 `
-
+/**
+ * @typedef {Object} CheckboxProps
+ * @property {string} label - The label for the checkbox.
+ * @property {string} name - The name for the checkbox.
+ * @property {boolean} [isChecked] - Indicates whether the checkbox is checked or not. Default is false.
+ * @property {Function} [onChecked] - Callback function triggered when the checkbox is checked or unchecked.
+ * @property {boolean} [required] - Indicates whether the checkbox is required or not.
+ * @property {Function} [sx] - The styling function for custom styling of the checkbox component.
+ * @property {React.Ref} [ref] - The ref object for the checkbox component.
+ */
 type CheckboxProps = {
   label: string
   name: string
@@ -39,6 +48,13 @@ type CheckboxProps = {
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 
+/**
+ * Checkbox component for React.
+ *
+ * @param {Object} props - The properties of the Checkbox component.
+ * @param {React.Ref} ref - The ref for the input element.
+ * @returns {React.Element} The rendered Checkbox component.
+ */
 const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (props, ref) => {
   const [selected, setSelected] = useState<boolean>(false)
 

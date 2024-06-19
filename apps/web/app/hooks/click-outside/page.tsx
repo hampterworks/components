@@ -7,12 +7,12 @@ import {typographyCodeString, useClickOutsideCodeString} from "../../../data/cod
 
 const Page: React.FC = () => {
   return <main className={styles.main}>
-    <div>
-      <Typography component='h1' variant='h1'>Use Click outside</Typography>
-      <Typography component='h2' variant='h5'>
-        Bacon ipsum dolor amet pork loin tail shank chislic cupim drumstick shoulder frankfurter sausage. Flank cupim jerky leberkas, jowl pig andouille. Pork chop pastrami pancetta corned beef fatback alcatra flank tail drumstick prosciutto kielbasa leberkas cow.
+    <section>
+      <Typography component='h1' variant='h1' className={styles.header}>Use Click outside</Typography>
+      <Typography component='h2' variant='h4'>
+        The useClickOutside is a custom React Hook that allows you to execute a callback function when a click event occurs outside of a specified element.
       </Typography>
-    </div>
+    </section>
     <div className={styles.sideBySide}>
       <section>
         <Code code={useClickOutsideCodeString}/>
