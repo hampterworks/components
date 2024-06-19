@@ -11,6 +11,7 @@
     "./Select": "./src/Select.tsx",
     "./Navigation": "./src/Navigation.tsx",
     "./RangeSlider": "./src/RangeSlider.tsx",
+    "./Breadcrumbs": "./src/Breadcrumbs.tsx",
     "./Code": "./src/Code.tsx"
   },
   "scripts": {

@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Link from 'next/link'
 import styled, {css} from "styled-components";
 import ChevronDown from "./icons/ChevronDown";
-import { usePathname } from 'next/navigation'
+import { usePathname  } from 'next/navigation'
 
 const NavigationWrapper = styled.nav`
     display: flex;

@@ -89,3 +89,13 @@ type RangeSliderProps = {
   marks?: number
 } & React.ComponentPropsWithoutRef<'input'>
 `
+
+export const breadcrumbsCodeString = `
+type BreadcrumbsProps = {
+  excludedPaths?: string[]
+  displayPaths?: string[]
+  overwritePaths?: Record<string, React.ReactNode>
+  overwriteSeparator?: string
+  sx?: ReturnType<typeof css>
+} & React.ComponentPropsWithoutRef<'div'>
+`
