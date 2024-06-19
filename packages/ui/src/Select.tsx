@@ -25,9 +25,9 @@ const SelectWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
 
     > select {
         position: absolute;
-        top: 50%;
+        top: 75%;
         appearance: none;
-
+        font-size: 0;
         option {
             height: 0;
         }
