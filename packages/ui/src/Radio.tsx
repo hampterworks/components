@@ -2,19 +2,21 @@
 
 import React, {useEffect, useState} from "react";
 import Target from "./icons/Target";
-import styled from "styled-components";
+import styled, {type css} from "styled-components";
 import RequiredLabel from "./RequiredLabel";
 
-const RadioWrapper = styled.fieldset`
+const RadioWrapper = styled.fieldset<{ $sx?: ReturnType<typeof css> }>`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    
+
     legend {
         display: flex;
         gap: 4px;
         margin-bottom: 8px;
     }
+    
+    ${props => props.$sx}
 `
 const RadioItem = styled.div`
     display: flex;
@@ -23,9 +25,9 @@ const RadioItem = styled.div`
 
     label, svg {
         cursor: pointer;
-        
+
     }
-    
+
     &:hover {
         svg circle {
             display: block;
@@ -44,6 +46,7 @@ type RadioProps = {
   selectedItem?: string
   onSelected?: (value: string) => void
   options: SelectItem[]
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 
 const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (props, ref) => {
@@ -56,6 +59,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (pro
     required,
     selectedItem,
     onSelected,
+    sx,
     ...restProps
   } = props
 
@@ -64,7 +68,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (pro
       setSelected(selectedItem)
   }, [selectedItem])
 
-  return <RadioWrapper>
+  return <RadioWrapper $sx={sx}>
     <legend>
       {label}
       {
@@ -73,7 +77,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (pro
     </legend>
 
     {
-      options.map((option) => <RadioItem key={option.value} >
+      options.map((option) => <RadioItem key={option.value}>
         <Target
           isToggled={selected === option.value}
           onClick={() => {

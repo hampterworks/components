@@ -35,6 +35,7 @@ type RadioProps = {
   selectedItem?: string
   onSelected?: (value: string) => void
   options: SelectItem[]
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'input'>
 `
 
@@ -76,6 +77,7 @@ type SelectProps = {
   selectedValue?: SelectItem | SelectItem[]
   multiple?: boolean
   searchable?: boolean
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'select'>
 `
 export const rangeCodeString = `
@@ -87,6 +89,7 @@ type RangeSliderProps = {
   max?: number
   step?: number
   marks?: number
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithoutRef<'input'>
 `
 

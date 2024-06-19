@@ -12,7 +12,7 @@ import RequiredLabel from "./RequiredLabel";
 /**
  * A wrapper component for whole element.
  */
-const SelectWrapper = styled.div`
+const SelectWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     position: relative;
     margin: 8px 0;
     display: flex;
@@ -32,6 +32,8 @@ const SelectWrapper = styled.div`
             height: 0;
         }
     }
+    
+    ${props => props.$sx}
 `
 /**
  * A wrapper component for input and dropdown elements.
@@ -118,6 +120,7 @@ type SelectProps = {
   selectedValue?: SelectItem | SelectItem[]
   multiple?: boolean
   searchable?: boolean
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'select'>
 
 
@@ -131,6 +134,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     selectedValue,
     multiple,
     searchable,
+    sx,
     ...restProps
   } = props
 
@@ -221,7 +225,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     }
   }
 
-  return <SelectWrapper ref={clickRef}>
+  return <SelectWrapper ref={clickRef} $sx={sx}>
     <select
       style={{height: 0}} // Setting height here to prevent layout shifts
       value={multiple

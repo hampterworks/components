@@ -1,9 +1,9 @@
 'use client'
 
 import React, {useEffect, useRef, useState} from "react";
-import styled from "styled-components";
+import styled, {type css} from "styled-components";
 
-const RangeWrapper = styled.div`
+const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     display: flex;
     flex-direction: column;
     position: relative;
@@ -31,7 +31,8 @@ const RangeWrapper = styled.div`
             color: #aeaeae;
         }
     }
-
+    
+    ${props => props.$sx}
 `
 
 const RangeElement = styled.input`
@@ -67,9 +68,10 @@ type RangeSliderProps = {
   max?: number
   step?: number
   marks?: number
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithoutRef<'input'>
 
-const RangeSlider: React.FC<RangeSliderProps> = ({name, label, value, min, max, step, marks, ...props}) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({name, label, value, min, max, step, marks, sx, ...props}) => {
   const [internalValue, setInternalValue] =
     useState(value ?? (max !== undefined && min !== undefined ? (min + max) / 2 : 50))
 
@@ -89,7 +91,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({name, label, value, min, max, 
     return () => clearTimeout(timer) // cleanup on unmount or state change
   }, [isShowing])
 
-  return <RangeWrapper>
+  return <RangeWrapper $sx={sx}>
     {
       label !== undefined &&
       <label htmlFor={name}>{label}</label>
