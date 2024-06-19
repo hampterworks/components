@@ -16,7 +16,7 @@ const Page: React.FC = () => {
       </Typography>
       <div className={styles.textBody}>
         <p>
-          An array of SelectItem objects that represent the options available for the Select component. Each SelectItem
+          options: An array of SelectItem objects that represent the options available for the Select component. Each SelectItem
           has a value (the value of the item) and a title (the title or display text of the item).
         </p>
         <p>
@@ -44,6 +44,9 @@ const Page: React.FC = () => {
         <p>
           searchable: An optional boolean property that indicates whether the Select component is searchable. If true,
           users can search for options within the dropdown list, which can be useful for long lists of options.
+        </p>
+        <p>
+          onSelectedValue: An optional function that serves as a callback triggered when the user selects or unselects a value.
         </p>
       </div>
     </section>

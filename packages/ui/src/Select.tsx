@@ -106,16 +106,16 @@ type SelectItem = {
 
 /**
  * Represents the properties for the Select component.
- *
- * @typedef {object} SelectProps
- * @property {SelectItem[]} options - The array of options for the Select component.
+ * @typedef {Object} SelectProps
+ * @property {SelectItem[]} options - The list of options for the Select component.
  * @property {string} [label] - The label for the Select component.
- * @property {string} [name] - The name attribute for the Select component (needed for forms).
- * @property {boolean} [required] - Indicates whether the Select component is required.
- * @property {SelectItem} [selectedValue] - The currently selected value for the Select component (defualt value).
- * @property {boolean} [multiple] - Indicates whether multiple options can be selected in the Select component.
- * @property {boolean} [searchable] - Indicates whether the Select component is searchable (auto complate).
- * @property {React.ComponentPropsWithRef<'select'>} - Additional props for the HTML select element.
+ * @property {string} [name] - The name attribute for the Select component.
+ * @property {boolean} [required] - Specifies if the Select component is required.
+ * @property {SelectItem | SelectItem[]} [selectedValue] - The selected value(s) for the Select component.
+ * @property {boolean} [multiple] - Specifies if the Select component allows multiple selections.
+ * @property {boolean} [searchable] - Specifies if the Select component is searchable.
+ * @property {function} [onSelectedValue] - Event handler for when the selected value(s) change.
+ * @property {ReturnType<css>} [sx] - The styling configuration for the Select component.
  */
 type SelectProps = {
   options: SelectItem[]
@@ -125,10 +125,27 @@ type SelectProps = {
   selectedValue?: SelectItem | SelectItem[]
   multiple?: boolean
   searchable?: boolean
+  onSelectedValue?: (value: SelectItem[]) => void
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'select'>
 
-
+/**
+ * Represents a custom Select component in React.
+ *
+ * @param {Object} props - The props for the Select component.
+ * @param {string} props.id - The id of the Select component.
+ * @param {string} props.label - The label of the Select component.
+ * @param {Array<SelectItem>} props.options - The options for the Select component.
+ * @param {string} props.name - The name of the Select component.
+ * @param {boolean} props.required - Indicates if the Select component is required.
+ * @param {SelectItem | SelectItem[]} props.selectedValue - The selected value(s) of the Select component.
+ * @param {boolean} props.multiple - Indicates if the Select component allows multiple selections.
+ * @param {boolean} props.searchable - Indicates if the Select component has a search functionality.
+ * @param {CSSProperties} props.sx - The custom styles for the Select component.
+ * @param {function} props.onSelectedValue - The callback function invoked when the selected value(s) change.
+ * @param {any} restProps - The additional props for the Select component.
+ * @returns {React.ReactNode} The JSX code for the Select component.
+ */
 const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (props, ref) => {
   const {
     id,
@@ -140,6 +157,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     multiple,
     searchable,
     sx,
+    onSelectedValue,
     ...restProps
   } = props
 
@@ -185,7 +203,9 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
     if (selected.length === 0 && selectElement[0]) {
       selectElement[0].selectedIndex = -1
     }
-
+    if (onSelectedValue !== undefined) {
+      onSelectedValue(selected)
+    }
   }, [selected])
 
   useEffect(() => {

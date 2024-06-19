@@ -82,6 +82,7 @@ type SelectProps = {
   selectedValue?: SelectItem | SelectItem[]
   multiple?: boolean
   searchable?: boolean
+  onSelectedValue?: (value: SelectItem[]) => void
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithRef<'select'>
 `
