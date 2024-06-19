@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled, {type css} from "styled-components";
 
 const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
@@ -31,7 +31,7 @@ const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
             color: #aeaeae;
         }
     }
-    
+
     ${props => props.$sx}
 `
 
@@ -94,7 +94,19 @@ type RangeSliderProps = {
  * @param {string} props.name - The name of the input element.
  * @param {string} props.label - The label displayed above the slider.
  * @*/
-const RangeSlider: React.FC<RangeSliderProps> = ({name, label, value, min, max, step, marks, sx, onSelected, ...props}) => {
+const RangeSlider: React.FC<RangeSliderProps> = (
+  {
+    name,
+    label,
+    value,
+    min,
+    max,
+    step,
+    marks,
+    sx,
+    onSelected,
+    ...props
+  }) => {
   const [internalValue, setInternalValue] =
     useState(value ?? (max !== undefined && min !== undefined ? (min + max) / 2 : 50))
 

@@ -3,7 +3,7 @@
 import React from "react";
 import styled, {css} from "styled-components";
 
-const IconWrapper = styled.svg<{$invert: boolean}>`
+const IconWrapper = styled.svg<{ $invert: boolean }>`
     transition: transform 200ms ease-in-out;
     ${props => props.$invert && css`transform: rotate(180deg);`}
 `

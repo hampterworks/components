@@ -15,7 +15,7 @@ const RadioWrapper = styled.fieldset<{ $sx?: ReturnType<typeof css> }>`
         gap: 4px;
         margin-bottom: 8px;
     }
-    
+
     ${props => props.$sx}
 `
 const RadioItem = styled.div`

@@ -20,7 +20,8 @@ const Page: React.FC = () => {
           input to inform users what information should be entered in the input field.
         </p>
         <p>
-          iconLeft: An optional property that represents an icon to be displayed on the left side of the input. It can be any renderable React
+          iconLeft: An optional property that represents an icon to be displayed on the left side of the input. It can
+          be any renderable React
           node.
         </p>
         <p>

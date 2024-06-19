@@ -19,37 +19,38 @@ const InputWrapper = styled.div<
     $isInvalid: boolean
   }>
   `
-    --text-padding: 28px;
-    --input-height: 37px;
-    position: relative;
+      --text-padding: 28px;
+      --input-height: 37px;
+      position: relative;
 
-    input {
-        height: var(--input-height);
-        width: 100%;
-        background: white;
-        color: black;
-        border: 1px solid gray;
-        border-radius: 4px;
+      input {
+          height: var(--input-height);
+          width: 100%;
+          background: white;
+          color: black;
+          border: 1px solid gray;
+          border-radius: 4px;
 
-        ${props => {
-            if (!props.$iconLeft && !props.$iconRight) {
-                return css`padding: 8px;`
-            }
-            if (!props.$iconLeft && props.$iconRight) {
-                return css`padding: 8px var(--text-padding) 8px 8px;`
-            }
-            if (props.$iconLeft && !props.$iconRight) {
-                return css`padding: 8px 8px 8px var(--text-padding);`
-            }
+          ${props => {
+              if (!props.$iconLeft && !props.$iconRight) {
+                  return css`padding: 8px;`
+              }
+              if (!props.$iconLeft && props.$iconRight) {
+                  return css`padding: 8px var(--text-padding) 8px 8px;`
+              }
+              if (props.$iconLeft && !props.$iconRight) {
+                  return css`padding: 8px 8px 8px var(--text-padding);`
+              }
 
-            return css`padding: 8px var(--text-padding);`
-        }}
-        &:focus:invalid {
-            border: 3px solid red;
-        }
-        ${props => props.$isInvalid && css`border: 3px solid red;`}
-    }
-`
+              return css`padding: 8px var(--text-padding);`
+          }}
+          &:focus:invalid {
+              border: 3px solid red;
+          }
+
+          ${props => props.$isInvalid && css`border: 3px solid red;`}
+      }
+  `
 
 const IconCommon = styled.div`
     --icon-size: 18px;

@@ -63,23 +63,29 @@ const Page: React.FC = () => {
     <section>
       <Typography component='h2' variant='h1' className={styles.header}>Radio group</Typography>
       <Typography component='h3' variant='h4'>
-        The RadioGroup is a component that represents a group of radio buttons, which allows the user to select one option from a set. It accepts several properties:
+        The RadioGroup is a component that represents a group of radio buttons, which allows the user to select one
+        option from a set. It accepts several properties:
       </Typography>
       <div className={styles.textBody}>
         <p>
-          name: A string that represents the name of the radio group. This is used to identify the group of radio buttons in form submissions.
+          name: A string that represents the name of the radio group. This is used to identify the group of radio
+          buttons in form submissions.
         </p>
         <p>
-          label: An optional string that represents the label for the radio group. This is typically displayed above the radio buttons to inform users what the group represents.
+          label: An optional string that represents the label for the radio group. This is typically displayed above the
+          radio buttons to inform users what the group represents.
         </p>
         <p>
-          required: An optional boolean property that indicates whether the radio group is required or not. If true, one of the radio buttons must be selected before the form can be submitted.
+          required: An optional boolean property that indicates whether the radio group is required or not. If true, one
+          of the radio buttons must be selected before the form can be submitted.
         </p>
         <p>
-          onSelected: An optional function that serves as a callback triggered when an item is selected. This can be used to handle changes in the radio group’s state.
+          onSelected: An optional function that serves as a callback triggered when an item is selected. This can be
+          used to handle changes in the radio group’s state.
         </p>
         <p>
-          options: An array of SelectItem objects that represent the options available for the radio group. Each SelectItem has a value (the value of the item) and a title (the title or display text of the item).
+          options: An array of SelectItem objects that represent the options available for the radio group. Each
+          SelectItem has a value (the value of the item) and a title (the title or display text of the item).
         </p>
       </div>
     </section>

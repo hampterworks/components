@@ -11,7 +11,9 @@ const Page: React.FC = () => {
     <section>
       <Typography component='h1' variant='h1' className={styles.header}>Breadcrumbs</Typography>
       <Typography component='h2' variant='h4'>
-        The Breadcrumbs component provides a navigational aid in user interfaces. It allows users to keep track of their locations within programs, documents, or websites. The component is highly customizable and accepts several properties
+        The Breadcrumbs component provides a navigational aid in user interfaces. It allows users to keep track of their
+        locations within programs, documents, or websites. The component is highly customizable and accepts several
+        properties
       </Typography>
       <div className={styles.textBody}>
         <p>excludedPaths: An optional array of strings. These are the paths that you want to exclude from the

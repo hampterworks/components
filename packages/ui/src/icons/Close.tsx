@@ -9,7 +9,7 @@ const IconWrapper = styled.svg`
     }
 `
 
-type CloseProps =  React.ComponentPropsWithoutRef<'svg'>
+type CloseProps = React.ComponentPropsWithoutRef<'svg'>
 
 const Close: React.FC<CloseProps> = ({...props}) => {
   return <IconWrapper

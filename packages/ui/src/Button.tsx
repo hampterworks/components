@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react";
-import styled from "styled-components";
 import type {css} from "styled-components";
+import styled from "styled-components";
 
 const StyledButton = styled.button<{
   $sx?: ReturnType<typeof css>,
@@ -11,7 +11,7 @@ const StyledButton = styled.button<{
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     gap: 8px;
     background: blue;
     padding: 16px;
@@ -22,21 +22,21 @@ const StyledButton = styled.button<{
     &:hover {
         background: darkblue;
     }
-    
-   ${props => {
-  if (props.$sx === undefined) {
-    switch (props.size) {
-      case 'small':
-        return 'width: 150px;'
-      case 'medium':
-        return 'width: 200px;'
-      case 'large':
-        return 'width: 300px;'
-      default:
-        return 'align-self: flex-start;'
-    }
-  }
-}}
+
+    ${props => {
+        if (props.$sx === undefined) {
+            switch (props.size) {
+                case 'small':
+                    return 'width: 150px;'
+                case 'medium':
+                    return 'width: 200px;'
+                case 'large':
+                    return 'width: 300px;'
+                default:
+                    return 'align-self: flex-start;'
+            }
+        }
+    }}
     ${props => props.$sx}
 `
 /**

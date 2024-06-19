@@ -32,7 +32,7 @@ const SelectWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
             height: 0;
         }
     }
-    
+
     ${props => props.$sx}
 `
 /**

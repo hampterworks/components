@@ -10,7 +10,7 @@ const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     align-items: center;
     gap: 4px;
     position: relative;
-    
+
     label, svg {
         cursor: pointer;
         font-size: 18px;
@@ -21,12 +21,12 @@ const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
             display: block;
         }
     }
-    
+
     input {
         position: absolute;
         bottom: 0;
     }
-    
+
     ${props => props.$sx}
 `
 /**

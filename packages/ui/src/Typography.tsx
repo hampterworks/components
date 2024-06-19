@@ -6,28 +6,28 @@ import styled, {css} from "styled-components";
 type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 type Variants = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
-const Heading = styled.span<{$variant?: Variants, $sx?: ReturnType<typeof css>}>`
+const Heading = styled.span<{ $variant?: Variants, $sx?: ReturnType<typeof css> }>`
     font-weight: bold;
 
     ${props => {
-      switch (props.$variant) {
-        case 'h1':
-          return 'font-size: 2em;';
-        case 'h2':
-          return 'font-size: 1.5em';
-        case 'h3':
-          return 'font-size: 1.17em';
-        case 'h4':
-          return 'font-size: 1em';
-        case 'h5':
-          return 'font-size: .83em';
-        case 'h6':
-          return 'font-size: .67em';
-        default:
-          return '';
-      }
+        switch (props.$variant) {
+            case 'h1':
+                return 'font-size: 2em;';
+            case 'h2':
+                return 'font-size: 1.5em';
+            case 'h3':
+                return 'font-size: 1.17em';
+            case 'h4':
+                return 'font-size: 1em';
+            case 'h5':
+                return 'font-size: .83em';
+            case 'h6':
+                return 'font-size: .67em';
+            default:
+                return '';
+        }
     }}
-    
+
     ${props => props.$sx}
 `
 
