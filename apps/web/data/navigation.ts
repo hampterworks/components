@@ -19,5 +19,6 @@ export const navigationLinks = [
     subLinks:[
       {url: '/hooks/click-outside', name: 'Click outside'}
     ]
-  }
+  },
+  {type: 'link', name: 'github', url: 'https://github.com/hampterworks/components'}
 ]
