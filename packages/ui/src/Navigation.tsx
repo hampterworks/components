@@ -54,7 +54,7 @@ const itemStyles = css`
     }
 
     &:hover {
-        transform: scale(1.1);
+        background: #d8d8d8;
     }
 `
 
