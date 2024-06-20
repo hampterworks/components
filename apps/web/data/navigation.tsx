@@ -4,13 +4,13 @@ export const navigationLinks = [
     type: 'subLink',
     name: 'Components',
     subLinks:[
-      {url: '/components/input', name: 'Input'},
-      {url: '/components/radio-checkbox', name: 'Radio/checkbox'},
-      {url: '/components/typography', name: 'Typography'},
-      {url: '/components/button', name: 'Button'},
-      {url: '/components/select', name: 'Select'},
-      {url: '/components/range', name: 'Range'},
-      {url: '/components/breadcrumbs', name: 'Breadcrumbs'}
+      {url: '/library/input', name: 'Input'},
+      {url: '/library/radio-checkbox', name: 'Radio/checkbox'},
+      {url: '/library/typography', name: 'Typography'},
+      {url: '/library/button', name: 'Button'},
+      {url: '/library/select', name: 'Select'},
+      {url: '/library/range', name: 'Range'},
+      {url: '/library/breadcrumbs', name: 'Breadcrumbs'}
     ]
   },
   {

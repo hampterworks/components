@@ -12,7 +12,8 @@ const NavigationWrapper = styled.nav`
     height: 100%;
     border-right: 1px solid #eaeaea;
     max-width: 200px;
-
+    width: 175px;
+    
     & > div {
         padding: 16px 8px;
     }
