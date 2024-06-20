@@ -54,7 +54,7 @@ const itemStyles = css`
     }
 
     &:hover {
-        font-size: 17px;
+        transform: scale(1.1);
     }
 `
 
