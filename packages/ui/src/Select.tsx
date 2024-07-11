@@ -55,6 +55,8 @@ const MultiSelectWrapper = styled.ul`
 const DropDown = styled.ul`
     color: black;
     width: 100%;
+    max-height: 350px;
+    overflow-y: scroll;
     border-radius: 4px;
     border: 1px solid gray;
     z-index: 9001;
