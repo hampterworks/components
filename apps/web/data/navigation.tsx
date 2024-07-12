@@ -10,7 +10,8 @@ export const navigationLinks = [
       {url: '/library/button', name: 'Button'},
       {url: '/library/select', name: 'Select'},
       {url: '/library/range', name: 'Range'},
-      {url: '/library/breadcrumbs', name: 'Breadcrumbs'}
+      {url: '/library/breadcrumbs', name: 'Breadcrumbs'},
+      {url: '/library/notifications', name: 'Notifications'},
     ]
   },
   {

@@ -48,6 +48,8 @@ const Page: React.FC = () => {
         <Input name='input' label='Number Input' type='number'/>
         <Input name='input' label='Required Input' required/>
         <Input name='input' label='Invalid Input' required isInvalid={true}/>
+        <Input name='input' label='Invalid Input' type='date'/>
+        <Input name='input' label='Invalid Input' type='time'/>
       </section>
       <section>
         <Code code={inputCodeString}/>

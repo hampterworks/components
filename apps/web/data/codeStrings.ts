@@ -130,3 +130,12 @@ const useClickOutside = (ref: RefObject<HTMLElement>, callback: () => void) => {
 
 export default useClickOutside
 `
+export const notificationsCodeString = `
+type Alert = 'success' | 'warning' | 'error' | 'info'
+
+type NotificationsProps = {
+  message?: string
+  alertType?: Alert
+  delay?: number
+} & React.ComponentPropsWithoutRef<'div'>
+`
