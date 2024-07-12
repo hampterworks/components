@@ -137,5 +137,7 @@ type NotificationsProps = {
   message?: string
   alertType?: Alert
   delay?: number
+  onClose?: () => void
+  sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithoutRef<'div'>
 `

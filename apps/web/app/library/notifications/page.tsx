@@ -27,6 +27,9 @@ const Page: React.FC = () => {
           delay: An optional number that represents the duration (in milliseconds) for which the Notification component
           is displayed. After this duration, the Notification automatically disappears.
         </p>
+        <p>
+          onClose: An optional function that is executed when the notification component is closed.
+        </p>
       </div>
     </section>
     <div className={styles.sideBySide}>
@@ -38,7 +41,7 @@ const Page: React.FC = () => {
         />
       </section>
       <section>
-        <Code code={notificationsCodeString}/>
+      <Code code={notificationsCodeString}/>
       </section>
     </div>
 

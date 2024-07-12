@@ -11,9 +11,10 @@ import styled, {css} from "styled-components";
  * @returns {React.ReactElement} - The styled div element.
  */
 const NotificationWrapper = styled.div<{$alertType?: Alert, $delay: number, $sx?: ReturnType<typeof css> }>`
-    position: absolute;
+    position: fixed;
+    text-align: center;
     top: 50px;
-    right: -200px;
+    right: -300px;
     padding: 16px;
     border-radius: 4px;
     color: white;
@@ -21,20 +22,20 @@ const NotificationWrapper = styled.div<{$alertType?: Alert, $delay: number, $sx?
     background: #0d1117;
 
     animation: slideIn 400ms forwards, slideOut 400ms ${props => props.$delay}s forwards;
-    
+
     @keyframes slideIn {
         from {
             transform: translateX(0);
         }
 
         to {
-            transform: translateX(-300px);
+            transform: translateX(-350px);
         }
     }
 
     @keyframes slideOut {
         from {
-            transform: translateX(-300px);
+            transform: translateX(-350px);
         }
 
         to {
@@ -55,7 +56,7 @@ const NotificationWrapper = styled.div<{$alertType?: Alert, $delay: number, $sx?
                 return 'background: #007BFF;'
         }
     }}
-    
+
     ${props => props.$sx}
 `
 
@@ -66,18 +67,20 @@ const NotificationWrapper = styled.div<{$alertType?: Alert, $delay: number, $sx?
 type Alert = 'success' | 'warning' | 'error' | 'info'
 
 /**
- * Represents the props for the Notifications component.
- *
+ * Defines the properties for the Notifications component.
  * @typedef {Object} NotificationsProps
  * @property {string} [message] - The message to be displayed in the notification.
- * @property {Alert} [alertType] - The type of the notification alert.
- * @property {number} [delay] - The delay in milliseconds before the notification disappears.
- * @property {React.ComponentPropsWithoutRef<'div'>} - Additional props for the underlying div.
+ * @property {Alert} [alertType] - The type of alert for the notification.
+ * @property {number} [delay] - The delay in milliseconds before the notification automatically closes.
+ * @property {function} [onClose] - The callback function triggered when the notification is closed.
+ * @property {ReturnType<typeof css>} [sx] - Additional CSS styles for the notification.
+ * @property {React.ComponentPropsWithoutRef<'div'>} - The remaining div props for the notification.
  */
 type NotificationsProps = {
   message?: string
   alertType?: Alert
   delay?: number
+  onClose?: () => void
   sx?: ReturnType<typeof css>
 } & React.ComponentPropsWithoutRef<'div'>
 
@@ -88,7 +91,7 @@ type NotificationsProps = {
  * @param {string} props.alertType - The type of alert (e.g. "success", "error").
  * @param {number} props.delay - The delay in seconds between each notification.
  */
-const Notifications: React.FC<NotificationsProps> = ({message, alertType, delay, sx}) => {
+const Notifications: React.FC<NotificationsProps> = ({message, alertType, delay, sx, onClose}) => {
   const [messageQueue, setMessageQueue] = useState<string[]>(message !== undefined ? [message] : [])
   const [currentMessage, setCurrentMessage] = useState<string>()
 
@@ -111,8 +114,12 @@ const Notifications: React.FC<NotificationsProps> = ({message, alertType, delay,
         if (updatedQueue.length === 0 && interval !== null) {
           clearInterval(interval)
           setCurrentMessage(undefined)
+
+          if (onClose !== undefined) {
+            onClose()
+          }
         }
-      }, delay !== undefined ? (delay * 1000) : 2000 )
+      }, delay !== undefined ? (delay * 500) : 500 )
     }
 
     return () => {
@@ -128,6 +135,7 @@ const Notifications: React.FC<NotificationsProps> = ({message, alertType, delay,
       <NotificationWrapper
         $alertType={alertType}
         $delay={delay ??  1}
+        $sx={sx}
         key={currentMessage}
       >
         {currentMessage}
