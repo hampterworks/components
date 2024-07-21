@@ -7,11 +7,18 @@ const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     display: flex;
     flex-direction: column;
     position: relative;
+    gap: 8px;
 
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.6);
+
+    label {
+        margin-bottom: 8px;
+    }
     output {
         position: absolute;
         left: 25px;
-        top: 110%;
+        top: 90%;
         background: #000;
         color: #fff;
         padding: 4px 8px;
@@ -21,12 +28,17 @@ const RangeWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
 
     datalist {
         display: flex;
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
         justify-content: space-between;
-        height: 10px;
+        height: 5px;
         overflow: hidden;
+
         option {
             padding: 0 2px;
         }
+
         option::before {
             content: '|';
             color: #aeaeae;
@@ -41,13 +53,13 @@ const RangeElement = styled.input`
     &::-webkit-slider-runnable-track {
         width: 100%;
         background: #0c69a8;
-        height: 15px;
+        height: 6px;
         border-radius: 2px;
     }
 
     &::-moz-range-track {
         background: #0c69a8;
-        height: 15px;
+        height: 6px;
         border-radius: 2px;
     }
 
@@ -55,24 +67,25 @@ const RangeElement = styled.input`
         -webkit-appearance: none;
         appearance: none;
         background-color: #aeaeae;
-        height: 20px;
-        width: 10px;
-        border-radius: 2px;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
         border: 0;
-        transform: translateY(-10%);
+        transform: translateY(-5px);
+        cursor: pointer;
     }
 
     &::-moz-range-thumb {
         background-color: #aeaeae;
-        height: 20px;
-        width: 10px;
-        border-radius: 2px;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
         border: 0;
     }
 
     &::-moz-range-progress {
         background: #053a5f;
-        height: 10px;
+        height: 5px;
     }
 `
 

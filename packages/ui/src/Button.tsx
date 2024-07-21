@@ -6,21 +6,25 @@ import styled from "styled-components";
 
 const StyledButton = styled.button<{
   $sx?: ReturnType<typeof css>,
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large',
+  $iconButton: boolean
 }>`
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: flex-end;
 
+    height: 37px;
     gap: 8px;
-    background: blue;
     padding: 16px;
     border-radius: 4px;
-    color: white;
+    color: #0b0b0b;
     cursor: pointer;
 
+    ${props => !props.$iconButton && 'border: 1px solid gray;'}
+
     &:hover {
-        background: darkblue;
+        background: #e8e8e8;
     }
 
     ${props => {
@@ -70,7 +74,13 @@ type ButtonProps = ({
 const Button: React.FC<ButtonProps> = ({label, size, icon, iconDirection, iconButton, sx, ...props}) => {
   const direction = iconDirection === undefined || iconDirection === 'left' ? 'left' : 'right'
 
-  return <StyledButton type={props.type ?? 'button'} $sx={sx} size={size} {...props}>
+  return <StyledButton
+    type={props.type ?? 'button'}
+    $sx={sx}
+    size={size}
+    $iconButton={iconButton ?? false}
+    {...props}
+  >
     {(icon !== undefined && direction === 'left') && icon}
     {label !== undefined && label}
     {(icon !== undefined && direction === 'right') && icon}
