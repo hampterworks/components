@@ -61,7 +61,7 @@ const InputWrapper = styled.div<
           }
 
           ${props => props.$disabled && css`
-            cursor: not-allowed;
+              cursor: not-allowed;
               color: gray;
           `}
       }

@@ -14,7 +14,6 @@ import RequiredLabel from "./RequiredLabel";
  */
 const SelectWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     position: relative;
-    margin: 8px 0;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -56,7 +55,7 @@ const DropDown = styled.ul`
     color: black;
     width: 100%;
     max-height: 350px;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 4px;
     border: 1px solid gray;
     z-index: 9001;
@@ -75,7 +74,7 @@ const ListItem = styled.li<{ $isSelected: boolean }>`
     &:not(:last-of-type) {
         border-bottom: 1px solid black;
     }
-    
+
     div {
         display: flex;
         gap: 8px;
