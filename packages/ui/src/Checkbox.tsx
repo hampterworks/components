@@ -1,24 +1,29 @@
 "use client"
 
 import React, {useEffect, useState} from "react";
-import Check from "./icons/Check";
+
 import styled, {css} from "styled-components";
 import RequiredLabel from "./RequiredLabel";
+import Check from "./icons/Check";
 
 const CheckboxWrapper = styled.div<{ $sx?: ReturnType<typeof css> }>`
     display: flex;
     align-items: center;
     gap: 4px;
     position: relative;
+    font-size: 18px;
 
     label, svg {
         cursor: pointer;
-        font-size: 18px;
     }
 
     &:hover {
         svg path:last-of-type {
             display: block;
+        }
+
+        svg path:first-of-type {
+            fill: #6eae5a;
         }
     }
 
@@ -68,6 +73,15 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
     ...restProps
   } = props
 
+  const handleKeyDown = (event: React.KeyboardEvent<SVGSVGElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      setSelected(!selected)
+      if (onChecked !== undefined)
+        onChecked(!selected)
+      event.preventDefault();  // prevent the default action (scroll down/page change)
+    }
+  }
+
   useEffect(() => {
     if (isChecked !== undefined)
       setSelected(isChecked)
@@ -76,6 +90,8 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
   return <CheckboxWrapper $sx={sx}>
     <Check
       isToggled={selected}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
       onClick={() => {
         setSelected(!selected)
         if (onChecked !== undefined)
@@ -88,6 +104,7 @@ const Checkbox: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> 
       ref={ref}
       name={name}
       id={name}
+      tabIndex={-1}
       type="checkbox"
       checked={selected}
       required={required}
